@@ -1,0 +1,14 @@
+need to get the amin page that i load to to be the login page.
+login page needs to clear fields on submit.
+create account needs logic to check if username is taken
+on create account, user submit button should also redirect to login page after user submission
+    maybe set the submit function to have a loading icon, an await for the response, then..
+    route to the login page.
+
+
+dont forget that this is multiuser.
+facebook uses websockets that are always listening,
+we wont use that, 
+we can use polling, creating a function that runs every couple of
+seconds to hit the backend and see if theres anything new and
+fetches it, this will be important for my own final.

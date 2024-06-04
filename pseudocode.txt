@@ -1,0 +1,29 @@
+front end project needs a login, create user, home page.
+
+login:
+    username field,
+    password field with blinders
+    create user link
+    page decorations.
+
+create user:
+    username field,
+    password entry
+    name, first and last.
+
+home page:
+    set as a baseplate with nothing at first.
+    eventually needs text entry field.
+        on submit needs to include: 
+            author username,
+            date posted (refer to notes)
+            text content.
+    
+    needs a feed for all user posts.
+        maybe a feed model, user posts information to the backend feed model
+        all users have access to see the feed.
+        for delete or edit options, match the username to the entry itself?
+        feed post format has a like, comment, share, repost. 
+
+
+need to setup authorization and link it to button onsubmit for login screen.
