@@ -27,3 +27,74 @@ home page:
 
 
 need to setup authorization and link it to button onsubmit for login screen.
+
+ive set up front end fields for entry. 
+both the CreateUser and Login fields have submit buttons that arent set
+both need axios.
+next I need to get models, views and serializers up and running, then
+be able to send auth tokens and set up authContext on the front.
+
+back end should be set up for user creation and login axios calls, 
+now i need to make the call and see.
+set up front end axios calls.
+
+
+6/5/2024
+    i can now create users and log them in, I have outstanding tokens available in the admin.
+    next i have to...
+
+    create and route a user to the home page after theyve logged in.
+
+    I need a front end form or box that allows my users to create posts. what does this look like?
+        a user should see.
+            home page has a feed of all posts.
+            at the top is a create post link or button that either sends the user to a new page or pops a modal
+                to enter the content they want to submit (with a submission button) that sends to a feed view.
+
+    added a create post button.
+    i added a div to the home page, "feed goes here"
+
+    now i want the button to pop a modal and submit that information.
+
+
+i now have a form that takes a text input and sends it out.
+
+on the backend I need to set up the urls for the admin,
+setup the views, serializers and models.
+
+I have the views started...
+going to set up the model.
+
+I have create posts set up, now I need to display them
+in the feed. 
+Ill make a seperate component thats called in the feed
+that component will reference an axios call in api
+which will pull the post info from the api and display it.
+        
+
+    thoughts on display 
+        ive set up the axios call in my api,
+        now I need to set up the feed component to call the api.
+        when do I want to call the api.
+
+        ill set up a setinterval function maybe in userhome? 
+         to call the api every minute or so
+         for now, on page load, make call, useeffect.
+         
+         when the userHome loads, I want it to trigger the 
+         useeffect that makes the api call
+         then sets that data to a state
+
+
+the feed now shows everyones posts.
+
+
+I want every post to now have a delete function if the user is you.
+    i need to check to see if Im getting tokens every time I log in and
+    if theyre changing.
+    i should set the delete functionality specifically to the username.
+
+    I could make a profile page, the profile page would also have
+    the feed but filter it by user so I only see my own posts.
+    incorporate a delete button, that way only I could delete and update
+    each post.

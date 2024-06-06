@@ -1,16 +1,25 @@
 import React, { useContext, useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import CreateUser from "./CreateUser"
+import { AuthContext } from "./context"
+import { getToken } from "./api"
 
 
 
 
 function Login() {
+    const { auth } = useContext(AuthContext)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
 
+    const submit = () => {
+        getToken({  username, password }).then(response => {
+            console.log(response.data) 
+            auth.setAccessToken(response.data.access)})
+        // console.log('access token: ', auth.accessToken)
+    }
 
     return (
         <div id="loginPage">

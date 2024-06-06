@@ -12,3 +12,5 @@ we wont use that,
 we can use polling, creating a function that runs every couple of
 seconds to hit the backend and see if theres anything new and
 fetches it, this will be important for my own final.
+
+in api, can handle conditional navigation with the .then.
