@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 // set up the base url to plug into later on.
 const baseUrl = "http://127.0.0.1:8000"
@@ -92,6 +93,26 @@ export const submitPost = ({ auth, userPost }) => {
     })
 }
 
+export const deletePost = ({auth, postId}) => {
+    return axios({
+        method: 'post',
+        url: `${baseUrl}/delete_post/`,
+        headers: {
+            Authorization: `Bearer ${auth.accessToken}`
+        },
+        data: {
+            post_id: postId
+        }
+        
+    }).then(response => {
+        console.log('post deleted', response)
+        return response.data
+    }).catch(error => {
+        console.log('error deleting post', error)
+        throw error
+    })
+}
+
 export const retrievePost = ({ auth }) => {
     return axios({
         method: 'get',
@@ -109,16 +130,27 @@ export const retrievePost = ({ auth }) => {
     })
 }
 // this is a new function, delete if doesnt works
-export const deletePost = ({ auth, postId }) => {
+
+
+export const retrieveProfilePost = ({ auth }) => {
     return axios({
-      method: 'delete',
-      url: `${baseUrl}/user_post/${postId}/`,
-      headers: {
-        Authorization: `Bearer ${auth.accessToken}`
-      }
+        method: 'get',
+        url: `${baseUrl}/profile_posts/`,
+        headers: {
+            Authorization: `Bearer ${auth.accessToken}`
+        }
     }).then(response => {
-      console.log('Post deleted:', response);
-    }).catch(error => {
-      console.log('Error deleting post:', error);
-    });
-  };
+        console.log('user post retrieved', response)
+        return response.data
+    })
+    .catch(error => {
+        console.log('error getting user post', error)
+        return []
+    })
+}
+
+export const logout = () => {
+    localStorage.removeItem('accessToken')
+    
+}
+

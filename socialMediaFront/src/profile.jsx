@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "./context";
-import { retrievePost, deletePost } from "./api";
+import { retrieveProfilePost, deletePost } from "./api";
 
 function Profile() {
   const { auth } = useContext(AuthContext);
   const [userPostState, setUserPostState] = useState([]);
 
   const fetchPosts = () => {
-    retrievePost({ auth }).then((data) => {
+    retrieveProfilePost({ auth }).then((data) => {
       // const userPosts = data.filter((post) => post.user === auth.user.username);
       setUserPostState(data);
       // change the log from userPosts back to data
@@ -15,12 +15,20 @@ function Profile() {
     });
   };
 
-  // new function, delete if doesnt work, ties to button in html
-
   useEffect(() => {
     fetchPosts();
     console.log("useEffect triggered");
   }, [auth]);
+
+  const handleDelete = (postId) => {
+    deletePost({ auth, postId })
+      .then(() => {
+        fetchPosts();
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
 
   return (
     <div>
