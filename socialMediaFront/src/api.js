@@ -149,6 +149,27 @@ export const retrieveProfilePost = ({ auth }) => {
     })
 }
 
+export const updatePost = ({ auth, postId, content }) => {
+    return axios({
+        method: 'post',
+        url: `${baseUrl}/update_post/`,
+        headers: {
+            Authorization: `Bearer ${auth.accessToken}`
+        },
+        data: {
+            post_id: postId,
+            content: content
+        }
+        
+    }).then(response => {
+        console.log('post updated', response)
+        return response.data
+    }).catch(error => {
+        console.log('error updating post', error)
+        throw error
+    })
+}
+
 export const logout = () => {
     localStorage.removeItem('accessToken')
     
